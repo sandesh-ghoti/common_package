@@ -143,10 +143,10 @@ export abstract class Subscriber<T extends Event> {
    */
   parseMessage(msg: JsMsg): T["data"] {
     try {
-      return msg.json();
+      return JSON.parse(msg.string());
     } catch (err: any) {
       console.error(`Error parsing message: ${err.message!}`);
-      return msg.string();
+      return msg.json();
     }
   }
 }
